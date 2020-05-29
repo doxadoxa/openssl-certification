@@ -1,0 +1,21 @@
+{
+    "name": "doxadoxa/open-ssl-sertification",
+    "description": "OpenSSL OOP-oriented wrapper for managing certificates.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Taras Dovgal",
+            "email": "td@hrom.fund"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php" : "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenSSL\\" : "src/"
+        }
+    }
+}
