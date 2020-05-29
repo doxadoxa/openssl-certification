@@ -11,7 +11,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php" : "^7.2"
+        "php" : "^7.2",
+        "ext-openssl": "*"
     },
     "autoload": {
         "psr-4": {
