@@ -13,7 +13,7 @@ interface Certificate
      * @param string $pem
      * @return Certificate
      */
-    public static function restore( string $pem ): Certificate;
+    public static function restore(string $pem): Certificate;
 
     /**
      * @return resource

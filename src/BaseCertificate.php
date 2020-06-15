@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace OpenSSL;
 
-use OpenSSL\Config\Args;
 use OpenSSL\DN\Location;
 use OpenSSL\DN\Organization;
 use OpenSSL\DN\Person;
@@ -34,10 +33,9 @@ class BaseCertificate
     private $validTo;
 
     /***
-     * CertificateAuthority constructor.
-     * @param $x509CertificateResource
+     * @param resource $x509CertificateResource
      */
-    public function __construct( $x509CertificateResource )
+    public function __construct($x509CertificateResource )
     {
         $this->resource = $x509CertificateResource;
         $data = openssl_x509_parse( $this->resource );
@@ -123,7 +121,6 @@ class BaseCertificate
     {
         $output = null;
         openssl_x509_export( $this->resource, $output, false );
-
         return $output;
     }
 }

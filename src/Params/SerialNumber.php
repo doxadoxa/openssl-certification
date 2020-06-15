@@ -16,7 +16,7 @@ class SerialNumber
      * SerialNumber constructor.
      * @param int $serialNumber
      */
-    public function __construct( int $serialNumber )
+    public function __construct(int $serialNumber)
     {
         $this->serialNumber = $serialNumber;
     }
@@ -34,6 +34,6 @@ class SerialNumber
      */
     public function hex(): string
     {
-        return '0x' . dechex( $this->serialNumber );
+        return '0x' . dechex($this->serialNumber);
     }
 }

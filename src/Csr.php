@@ -15,21 +15,22 @@ class Csr
 {
     private $csr;
 
-    public function __construct( DistinguishedName $dn, PrivateKey $privateKey, ?Args $args = null, ?Extra $extra = null )
+    public function __construct(DistinguishedName $dn, PrivateKey $privateKey,
+                                ?Args $args = null, ?Extra $extra = null)
     {
-        if ( null === $args ) {
+        if (null === $args) {
             $args = new Args();
         }
 
-        if ( null === $extra ) {
+        if (null === $extra) {
             $extra = new Extra();
         }
 
         $privateKeyResource = $privateKey->resource();
 
-        $this->csr = openssl_csr_new( $dn->toArray(), $privateKeyResource, $args->toArray(), $extra->toArray() );
+        $this->csr = openssl_csr_new($dn->toArray(), $privateKeyResource, $args->toArray(), $extra->toArray());
 
-        if ( $this->csr === false ) {
+        if ($this->csr === false) {
             throw new RuntimeException("CSR can't be created.");
         }
     }

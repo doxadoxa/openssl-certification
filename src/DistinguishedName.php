@@ -28,7 +28,7 @@ class DistinguishedName
      * @param Organization $organization
      * @param Person $person
      */
-    public function __construct(Location $location, Organization $organization, Person $person )
+    public function __construct(Location $location, Organization $organization, Person $person)
     {
         $this->location = $location;
         $this->organization = $organization;

@@ -22,29 +22,26 @@ final class SlaveCertificate extends BaseCertificate implements Certificate
      * @param int $serial
      * @return CertificateAuthority
      */
-    public static function generate( Csr $csr, CertificateAuthority $authority, PrivateKey $privateKey,
-                                     int $days, Args $args = null, int $serial = self::DEFAULT_SERIAL ): Certificate
+    public static function generate(Csr $csr, CertificateAuthority $authority, PrivateKey $privateKey,
+                                     int $days, Args $args = null, int $serial = self::DEFAULT_SERIAL): Certificate
     {
-        if ( null === $args ) {
+        if (null === $args) {
             $args = new Args();
         }
 
-        $args->set('digest_alg', 'sha256WithRSAEncryption');
-        $args->set("x509_extensions", "v3_req");
+        $signed = openssl_csr_sign($csr->resource(), $authority->resource(), $privateKey->resource(),
+            $days, $args->toArray(), $serial);
 
-        $signed = openssl_csr_sign( $csr->resource(), $authority->resource(), $privateKey->resource(),
-            $days, $args->toArray(), $serial );
-
-        return new SlaveCertificate( $signed );
+        return new SlaveCertificate($signed);
     }
 
     /**
      * @param string $pem
      * @return Certificate|CertificateAuthority
      */
-    public static function restore( string $pem ): Certificate
+    public static function restore(string $pem): Certificate
     {
-        $resource = openssl_x509_read( $pem );
-        return new SlaveCertificate( $resource );
+        $resource = openssl_x509_read($pem);
+        return new SlaveCertificate($resource);
     }
 }

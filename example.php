@@ -15,6 +15,7 @@ use OpenSSL\PrivateKey;
 use OpenSSL\SlaveCertificate;
 
 $privateKey = PrivateKey::generate();
+echo $privateKey->export() . PHP_EOL;
 
 $args = new Args();
 $args->set("digest_alg", "sha256WithRSAEncryption");
@@ -61,9 +62,11 @@ $slaveCsr = new Csr(
     $slaveArgs
 );
 
-$ca = CertificateAuthority::generate( $csr, $privateKey, 365 );
+$ca = CertificateAuthority::generate( $csr, $privateKey, 365, $args );
 $saved = $ca->export();
 
-$slave = SlaveCertificate::generate( $slaveCsr, $ca, $privateKey,365, null, 30 );
-echo $slave->serialNumber()->number() . PHP_EOL;
-echo $slave->serialNumber()->hex() . PHP_EOL;
+$exportedCA = CertificateAuthority::restore($saved);
+echo $exportedCA->export();
+
+$slave = SlaveCertificate::generate( $slaveCsr, $ca, $privateKey,365, $slaveArgs, 30 );
+$slave2 = SlaveCertificate::generate( $slaveCsr, $exportedCA, $privateKey,365, $slaveArgs, 30 );

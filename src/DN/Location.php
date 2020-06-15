@@ -17,7 +17,7 @@ class Location
     /** @var string */
     private $localityName;
 
-    public function __construct( string $countryCode, string $stateOrProvinceName, string $localityName )
+    public function __construct(string $countryCode, string $stateOrProvinceName, string $localityName)
     {
         $this->countryCode = $countryCode;
         $this->stateOrProvinceName = $stateOrProvinceName;

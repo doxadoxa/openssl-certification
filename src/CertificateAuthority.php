@@ -38,9 +38,6 @@ final class CertificateAuthority extends BaseCertificate implements Certificate
             $args = new Args();
         }
 
-        $args->set('digest_alg', 'sha256WithRSAEncryption');
-        $args->set('x509_extensions', 'v3_ca');
-
         $signed = openssl_csr_sign( $csr->resource(), null, $privateKey->resource(),
             $days, $args->toArray(), $serial );
 

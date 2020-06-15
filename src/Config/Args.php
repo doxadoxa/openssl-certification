@@ -23,9 +23,9 @@ class Args
      * @param string $argument
      * @param mixed $value
      */
-    public function set( string $argument, $value ): void
+    public function set(string $argument, $value): void
     {
-        $this->args[ $argument ] = $value;
+        $this->args[$argument] = $value;
     }
 
     /**
@@ -36,6 +36,6 @@ class Args
      */
     public function toArray(): ?array
     {
-        return empty( $this->args ) ? null : $this->args;
+        return empty($this->args) ? null : $this->args;
     }
 }
